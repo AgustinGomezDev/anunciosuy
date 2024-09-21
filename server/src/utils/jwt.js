@@ -5,22 +5,26 @@ const createToken = (user) => {
 }
 
 const authToken = (req, res, next) => {
-    const authCookie = req.headers.cookie
-    if (!authCookie) {
+    const token = req.cookies[process.env.JWT_COOKIE_KEY];
+    if (!token) {
         return res.status(401).send({
-            error: 'Usuario no autenticado o falta de token.'
-        })
+            error: 'Usuario no autenticado o falta de tokens.'
+        });
     }
-
-    const token = authCookie.split('=')[1]
 
     jwt.verify(token, process.env.JWT_KEY, (error, credentials) => {
         if (error) return res.status(403).send({
-            error: "Token inválido."
+            error: "Token inválido.",
+            message: error
         })
         req.user = credentials.user
         next()
     })
 }
 
-module.exports = { createToken, authToken }
+const decodeJWT = (token, signature) => {
+    const payload = jwt.verify(token, signature)
+    return payload
+}
+
+module.exports = { createToken, authToken, decodeJWT }
