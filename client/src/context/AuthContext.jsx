@@ -22,11 +22,15 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    const login = async (user) => {
+    const login = async (userData) => {
         try {
-            const res = await loginRequest(user)
-            setUser(res.data)
+            const res = await loginRequest(userData)
+            setUser({
+                user: res.data.user,
+                token: res.data.accessToken
+            })
             setIsAuthenticated(true)
+            return(res)
         } catch (error) {
             throw Error(error)
         }

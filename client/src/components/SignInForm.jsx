@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -14,6 +13,9 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import useFetch from "@/hooks/useFetch";
+import { useNavigate } from "react-router-dom";;
+import toast from 'react-hot-toast';
+import { useAuth } from '@/context/AuthContext';
 
 const formSchema = z.object({
     email: z.string().min(1,
@@ -25,6 +27,9 @@ const formSchema = z.object({
 })
 
 export function ProfileForm() {
+    const navigate = useNavigate();
+    const { login } = useAuth();
+
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -33,11 +38,25 @@ export function ProfileForm() {
         },
     });
 
+    const { fn: LoginUser, loading } = useFetch(login)
+
     async function onSubmit(values) {
         try {
-            console.log(values)
+            const res = await LoginUser(values)
+            if (!res || res.error) {
+                throw new Error(res?.error || 'Ups, algo salió mal al intentar iniciar sesión. ¡Inténtalo de nuevo!');
+            }
+
+            if (res.data) {
+                toast.success("Sesión iniciada, te redirigiremos al inicio.");
+                setTimeout(() => {
+                    navigate("/");
+                }, 2000)
+            } else {
+                throw new Error("Parece que hubo un problema con la respuesta del servidor. Estamos trabajando para solucionarlo.");
+            }
         } catch (error) {
-            console.log("Error:", error)
+            toast.error(error.message.split("Error: Error:")[1] || "Lo sentimos, ha ocurrido un error inesperado. ¡Intenta más tarde!");
         }
     }
 
@@ -64,13 +83,13 @@ export function ProfileForm() {
                         <FormItem>
                             <FormLabel>Contraseña</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input type="password" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Enviar</Button>
+                <Button type="submit" disabled={loading}>{loading ? "Cargando..." : "Enviar"}</Button>
             </form>
         </Form>
     )
