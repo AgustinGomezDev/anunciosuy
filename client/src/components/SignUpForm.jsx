@@ -14,9 +14,9 @@ import parsePhoneNumber from "libphonenumber-js";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import useFetch from "@/hooks/useFetch";
-import { register } from "@/api/users.api";
 import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '@/context/AuthContext';
 
 const formSchema = z.object({
     name: z.string().min(3, {
@@ -48,6 +48,7 @@ const formSchema = z.object({
 })
 
 export function ProfileForm() {
+    const { register } = useAuth()
     const navigate = useNavigate();
 
     const form = useForm({
@@ -79,7 +80,7 @@ export function ProfileForm() {
                 throw new Error("Parece que hubo un problema con la respuesta del servidor. Estamos trabajando para solucionarlo.");
             }
         } catch (error) {
-            toast.error(error.message.split("Error:")[1] || "Lo sentimos, ha ocurrido un error inesperado. ¡Intenta más tarde!");
+            toast.error(error.message.split("Error: Error:")[1] || "Lo sentimos, ha ocurrido un error inesperado. ¡Intenta más tarde!");
         }
     }
 
