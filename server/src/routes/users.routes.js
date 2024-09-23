@@ -37,4 +37,16 @@ router.post('/logout', (req, res, next) => {
     }
 })
 
+router.get('/current', authToken, (req, res, next) => {
+    try {
+        const { _id, name, phone, email, date_of_birth, createdAt } = req.user
+        return res.status(200).json({ message: 'Usuario autenticado', user: { _id, name, phone, email, date_of_birth, createdAt } });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error obteniendo usuario.',
+            error: error.message
+        })
+    }
+})
+
 module.exports = router 
