@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from './ui/button'
 import { HeartRounded, Plus, Menu01 } from "untitledui-js-base"
 import { useAuth } from '@/context/AuthContext'
 
 const Header = () => {
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
 
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -13,14 +14,21 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const logoutFn =  async () => {
+    await logout()
+    navigate('/inicio-sesion')
+  }
+
   return (
     <header className='flex justify-between items-center py-2'>
       <div>
-        <h1 className='text-4xl font-extrabold tracking-tighter'>Anuncios<span className=''>Uy</span></h1>
+        <Link to="/">
+          <h1 className='text-4xl font-extrabold tracking-tighter'>Anuncios<span className=''>Uy</span></h1>
+        </Link>
       </div>
       <div className='hidden md:flex gap-2 items-center'>
         {/* <HeartRounded size="24" /> */}
-        {user && user.user._id ?
+        {user && user._id ?
           (
             <div className='flex gap-1'>
               <Link to="/publicar">
@@ -32,6 +40,7 @@ const Header = () => {
               <Link to="/cuenta">
                 <Button variant="outline">Cuenta</Button>
               </Link>
+              <Button variant="outline" onClick={() => logoutFn()}>Cerrar sesión</Button>
             </div>
           )
           :
@@ -53,7 +62,7 @@ const Header = () => {
       {menuOpen && (
         <div className='absolute top-16 right-0 mr-5 bg-white shadow-lg rounded-lg p-4 w-40'>
           <ul className='flex flex-col gap-2'>
-            {user && user.user._id ? (
+            {user && user._id ? (
               <>
                 <li>
                   <Link to="/publicar">
@@ -67,6 +76,9 @@ const Header = () => {
                   <Link to="/cuenta">
                     <Button variant="outline" className="w-full">Cuenta</Button>
                   </Link>
+                </li>
+                <li>
+                  <Button variant="outline" className="w-full" onClick={ () => logoutFn() } >Cerrar sesión</Button>
                 </li>
               </>
             ) : (

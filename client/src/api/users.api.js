@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from './axios';
 
 export async function registerRequest(userData) {
-    const url = `${import.meta.env.VITE_API_URL}/users/register`
+    const url = '/users/register'
 
     try {
         const res = await axios.post(url, userData)
@@ -13,7 +13,7 @@ export async function registerRequest(userData) {
 }
 
 export async function loginRequest(userData) {
-    const url = `${import.meta.env.VITE_API_URL}/users/login`
+    const url = '/users/login'
 
     try {
         const res = await axios.post(url, userData)
@@ -25,9 +25,25 @@ export async function loginRequest(userData) {
 }
 
 export async function logoutRequest() {
+    const url = '/users/logout'
 
+    try {
+        const res = await axios.post(url)
+        return res
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message;
+        throw new Error(errorMessage);
+    }
 }
 
 export async function verifyTokenRequest() {
+    const url = '/users/current'
 
+    try {
+        const res = await axios.get(url)
+        return res
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message;
+        throw new Error(errorMessage);
+    }
 }

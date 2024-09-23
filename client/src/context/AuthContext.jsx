@@ -1,5 +1,6 @@
-import { registerRequest, loginRequest, logoutRequest } from '@/api/users.api';
+import { registerRequest, loginRequest, logoutRequest, verifyTokenRequest } from '@/api/users.api';
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import Cookies from 'js-cookie'
 
 const AuthContext = createContext();
 
@@ -12,6 +13,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [loading, setLoading] = useState(true);
 
     const register = async (user) => {
         try {
@@ -30,7 +32,7 @@ export const AuthProvider = ({ children }) => {
                 token: res.data.accessToken
             })
             setIsAuthenticated(true)
-            return(res)
+            return (res)
         } catch (error) {
             throw Error(error)
         }
@@ -38,29 +40,39 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-
+            const res = await logoutRequest()
+            const jwtCookieKey = import.meta.env.VITE_JWT_COOKIE_KEY;
+            Cookies.remove(jwtCookieKey);
+            setUser(null);
+            setIsAuthenticated(false);
         } catch (error) {
             throw Error(error)
         }
     }
 
-    // useEffect(() => {
-    //     const cookies = 0
+    useEffect(() => {
+        const jwtCookieKey = import.meta.env.VITE_JWT_COOKIE_KEY;
+        const jwtToken = Cookies.get(jwtCookieKey);
 
-    //     if (cookies) {
-    //         try {
-    //             const res = verifyTokenRequest()
-    //                 .then(result => {
-    //                     setUser(res.data)
-    //                     setIsAuthenticated(true)
-    //                 })
-    //         } catch (error) {
-    //             console.log(error)
-    //             setIsAuthenticated(false)
-    //             setUser(null)
-    //         }
-    //     }
-    // })
+        if (jwtToken) {
+            try {
+                const res = verifyTokenRequest()
+                    .then(result => {
+                        setUser(result.data.user)
+                        setIsAuthenticated(true)
+                    }).catch(() => {
+                        setIsAuthenticated(false)
+                        setUser(null);
+                    })
+                    .finally(() => {
+                        setLoading(false)
+                    });
+            } catch (error) {
+                setIsAuthenticated(false)
+                setUser(null)
+            }
+        }
+    }, [user])
 
     return (
         <AuthContext.Provider value={{
