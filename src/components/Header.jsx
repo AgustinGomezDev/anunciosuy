@@ -20,10 +20,10 @@ const Header = () => {
   }
 
   return (
-    <header className='flex justify-between items-center py-2'>
+    <header className='flex justify-between items-center py-2 px-5 md:px-0'>
       <div>
         <Link to="/">
-          <h1 className='text-4xl font-extrabold tracking-tighter'>Anuncios<span className=''>Uy</span></h1>
+          <h1 className='text-4xl font-extrabold tracking-tighter transition hover:scale-105'>Anuncios<span className=''>Uy</span></h1>
         </Link>
       </div>
       <div className='hidden md:flex gap-2 items-center'>
@@ -32,7 +32,7 @@ const Header = () => {
           (
             <div className='flex gap-1'>
               <Link to="/publicar">
-                <Button className="flex gap-1 justify-between">
+                <Button className="flex gap-1 justify-between bg-blue-500 hover:bg-blue-900">
                   <Plus size="22" />
                   Publicar
                 </Button>
@@ -47,7 +47,7 @@ const Header = () => {
           (
             <div className='flex gap-1'>
               <Link to="/inicio-sesion">
-                <Button>Iniciar sesión</Button>
+                <Button className="bg-blue-500 hover:bg-blue-900">Iniciar sesión</Button>
               </Link>
               <Link to="/registro">
                 <Button variant="outline">Registrarme</Button>
@@ -85,7 +85,7 @@ const Header = () => {
               <>
                 <li>
                   <Link to="/inicio-sesion">
-                    <Button className="w-full">Iniciar sesión</Button>
+                    <Button className="w-full bg-blue-500 hover:bg-blue-900">Iniciar sesión</Button>
                   </Link>
                 </li>
                 <li>
