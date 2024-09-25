@@ -44,6 +44,7 @@ export function ProfileForm() {
         try {
             const res = await LoginUser(values)
             if (!res || res.error) {
+                console.log('RES.ERROR:', res.error)
                 throw new Error(res?.error || 'Ups, algo salió mal al intentar iniciar sesión. ¡Inténtalo de nuevo!');
             }
 
@@ -56,6 +57,7 @@ export function ProfileForm() {
                 throw new Error("Parece que hubo un problema con la respuesta del servidor. Estamos trabajando para solucionarlo.");
             }
         } catch (error) {
+            console.log('CATCH:', error)
             toast.error(error.message.split("Error: Error:")[1] || "Lo sentimos, ha ocurrido un error inesperado. ¡Intenta más tarde!");
         }
     }

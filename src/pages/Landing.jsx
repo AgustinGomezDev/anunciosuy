@@ -86,10 +86,8 @@ const Landing = () => {
                     <div>
                         {/* ULTIMOS ANUNCIOS */}
                     </div>
-                    <div className='flex justify-center items-center gap-2'>
-                        <p>250.377 anuncios</p>
-                        <span className='w-[2px] h-8 bg-gray-300 rounded-full'></span>
-                        <p>1.899 publicados hoy</p>
+                    <div>
+                        {/* LATEST ADVERTS */}
                     </div>
                 </section>
                 <section className='mt-7  md:mx-20'>

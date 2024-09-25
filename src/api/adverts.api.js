@@ -12,6 +12,18 @@ export async function postRequest(advertData) {
     }
 }
 
+export async function getRequest(query) {
+    const url = query ?  `/adverts/adverts?${query}` : '/adverts/adverts'
+
+    try {
+        const res = await axios.get(url)
+        return res
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message;
+        throw new Error(errorMessage);
+    }
+}
+
 export async function getRequestById(id) {
     const url = `/adverts/adverts/${id}`
 
