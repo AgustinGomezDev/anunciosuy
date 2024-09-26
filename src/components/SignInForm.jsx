@@ -48,6 +48,7 @@ export function ProfileForm() {
             }
 
             if (res.data) {
+                console.log(res.data)
                 toast.success("Sesión iniciada, te redirigiremos al inicio.");
                 setTimeout(() => {
                     navigate("/");
