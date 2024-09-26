@@ -5,7 +5,7 @@ import { HeartRounded, Plus, Menu01 } from "untitledui-js-base"
 import { useAuth } from '@/context/AuthContext'
 
 const Header = () => {
-  const { user, logout } = useAuth()
+  const { user, logout, loading } = useAuth()
   const navigate = useNavigate()
 
   const [menuOpen, setMenuOpen] = useState(false)
@@ -18,6 +18,8 @@ const Header = () => {
     await logout()
     navigate('/inicio-sesion')
   }
+
+  if(user) return console.log('user:', user)
 
   return (
     <header className='flex justify-between items-center py-2 px-5 md:px-0'>

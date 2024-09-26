@@ -51,9 +51,7 @@ export const AuthProvider = ({ children }) => {
         const verifyAuth = async () => {
             try {
                 const res = verifyTokenRequest()
-                console.log('res:', res)
                     .then(result => {
-                        console.log('Result:', result)
                         setUser(result.data.user)
                         setIsAuthenticated(true)
                     }).catch(() => {
@@ -77,6 +75,7 @@ export const AuthProvider = ({ children }) => {
             register,
             login,
             logout,
+            loading,
             isAuthenticated,
             user
         }}>
