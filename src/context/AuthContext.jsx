@@ -56,10 +56,12 @@ export const AuthProvider = ({ children }) => {
 
         console.log('jwtCookieKey:', jwtCookieKey)
         console.log('jwtToken:', jwtToken)
+        console.log('cookies:', Cookies.get())
 
         if (jwtToken) {
             try {
                 const res = verifyTokenRequest()
+                console.log('res:', res)
                     .then(result => {
                         console.log('Result:', result)
                         setUser(result.data.user)
