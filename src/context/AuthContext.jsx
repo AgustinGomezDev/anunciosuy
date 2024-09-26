@@ -54,10 +54,14 @@ export const AuthProvider = ({ children }) => {
         const jwtCookieKey = import.meta.env.VITE_JWT_COOKIE_KEY;
         const jwtToken = Cookies.get(jwtCookieKey);
 
+        console.log('jwtCookieKey:', jwtCookieKey)
+        console.log('jwtToken:', jwtToken)
+
         if (jwtToken) {
             try {
                 const res = verifyTokenRequest()
                     .then(result => {
+                        console.log('Result:', result)
                         setUser(result.data.user)
                         setIsAuthenticated(true)
                     }).catch(() => {
