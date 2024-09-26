@@ -33,8 +33,6 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    verifyAuth()
-
     const register = async (user) => {
         try {
             const res = await registerRequest(user)
