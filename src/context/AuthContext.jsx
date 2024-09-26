@@ -14,6 +14,27 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [loading, setLoading] = useState(true);
 
+    const verifyAuth = async () => {
+        try {
+            const res = await verifyTokenRequest()
+                .then(result => {
+                    setUser(result.data.user)
+                    setIsAuthenticated(true)
+                }).catch(() => {
+                    setIsAuthenticated(false)
+                    setUser(null);
+                })
+                .finally(() => {
+                    setLoading(false)
+                });
+        } catch (error) {
+            setIsAuthenticated(false)
+            setUser(null)
+        }
+    }
+
+    verifyAuth()
+
     const register = async (user) => {
         try {
             const res = await registerRequest(user)
@@ -26,11 +47,12 @@ export const AuthProvider = ({ children }) => {
     const login = async (userData) => {
         try {
             const res = await loginRequest(userData)
-            setUser({
-                user: res.data.user,
-                token: res.data.accessToken
-            })
-            setIsAuthenticated(true)
+            // setUser({
+            //     user: res.data.user,
+            //     token: res.data.accessToken
+            // })
+            // setIsAuthenticated(true)
+            verifyAuth()
             return (res)
         } catch (error) {
             throw Error(error)
@@ -48,25 +70,6 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const verifyAuth = async () => {
-            try {
-                const res = verifyTokenRequest()
-                    .then(result => {
-                        setUser(result.data.user)
-                        setIsAuthenticated(true)
-                    }).catch(() => {
-                        setIsAuthenticated(false)
-                        setUser(null);
-                    })
-                    .finally(() => {
-                        setLoading(false)
-                    });
-            } catch (error) {
-                setIsAuthenticated(false)
-                setUser(null)
-            }
-        }
-
         verifyAuth()
     }, [])
 
