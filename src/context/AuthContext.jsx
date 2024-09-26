@@ -1,6 +1,5 @@
 import { registerRequest, loginRequest, logoutRequest, verifyTokenRequest } from '@/api/users.api';
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import Cookies from 'js-cookie'
 
 const AuthContext = createContext();
 
@@ -41,8 +40,6 @@ export const AuthProvider = ({ children }) => {
     const logout = async () => {
         try {
             const res = await logoutRequest()
-            const jwtCookieKey = import.meta.env.VITE_JWT_COOKIE_KEY;
-            Cookies.remove(jwtCookieKey);
             setUser(null);
             setIsAuthenticated(false);
         } catch (error) {
@@ -51,14 +48,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const jwtCookieKey = import.meta.env.VITE_JWT_COOKIE_KEY;
-        const jwtToken = Cookies.get(jwtCookieKey);
-
-        console.log('jwtCookieKey:', jwtCookieKey)
-        console.log('jwtToken:', jwtToken)
-        console.log('cookies:', Cookies.get())
-
-        if (jwtToken) {
+        const verifyAuth = async () => {
             try {
                 const res = verifyTokenRequest()
                 console.log('res:', res)
@@ -78,7 +68,9 @@ export const AuthProvider = ({ children }) => {
                 setUser(null)
             }
         }
-    }, [user])
+
+        verifyAuth()
+    }, [])
 
     return (
         <AuthContext.Provider value={{
