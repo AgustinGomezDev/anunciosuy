@@ -1,110 +1,116 @@
-import { Input } from '@/components/ui/input'
+import SearchForm from '@/components/SearchForm';
+import { Button } from '@/components/ui/button';
 import React from 'react'
-import { SearchMD } from "untitledui-js-base"
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from "@/components/ui/form";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue
-} from "@/components/ui/select"
+import { Link } from 'react-router-dom';
+import { PlusCircle, Circle, Users01, TrendUp01, Home03, BriefCase01, ShoppingBag02, Monitor05, Announcement01 } from "untitledui-js-base"
 
-const placeholders = [
-    "Servicio de marketing",
-    "Servicio de peluquería a domicilio",
-    "Autos eléctricos",
-    "Casas en Rocha",
-    "Trabajo primera experiencia",
-    "Computadoras",
-    "Asesoría legal",
-    "Veterinarias",
-    "Profesor particular",
-    "Servicio de plomería",
-    "Clases de guitarra",
-    "Alquiler de apartamentos en Montevideo",
-    "Vendedores de ropa por mayor",
-    "Mecánico a domicilio",
-    "Cuidado de ancianos",
-    "Servicio de catering para eventos",
-    "Servicio de fotografía y video",
-    "Electricista certificado",
-    "Guarderías para niños",
-    "Servicio de mudanzas",
-    "Contadores y asesoría financiera",
-    "Reparación de electrodomésticos",
-    "Clases de inglés a domicilio",
-    "Ofertas de trabajo remoto",
-    "Venta de bicicletas",
-    "Pintores de casas y oficinas",
-    "Jardinería y mantenimiento de espacios verdes",
-    "Servicio de transporte escolar",
-    "Servicio de diseño gráfico",
-    "Mascotas en adopción",
-    "Compra y venta de terrenos",
-    "Cuidado de mascotas",
-    "Clases de yoga y meditación",
-    "Servicio de desarrollo web",
-    "Fletes y transporte de cargas",
-    "Servicio de limpieza para oficinas",
-    "Técnico de celulares y tablets",
-    "Alquiler de locales comerciales",
-    "Músicos para eventos",
-    "Tatuadores y estudios de tatuajes",
-    "Reparación de bicicletas",
-    "Servicio de cerrajería",
-    "Clases de repostería",
-    "Psicólogos y terapia en línea",
-    "Venta de muebles usados",
-    "Reparación de techos y filtraciones",
-    "Mudanzas nacionales e internacionales",
-    "Servicio de pintura automotriz",
-    "Diseñadores de interiores"
-];
 const Landing = () => {
     return (
-        <div>
-            <div >
-                <section className='flex flex-col items-center justify-center container'>
-                    <h1 className='text-center text-4xl sm:text-4xl lg:text-6xl font-extrabold tracking-tighter mt-20'>¿Qué estás <span className='text-blue-500'>buscando</span>?</h1>
-                    <div className='bg-background border border-input rounded-full h-16 w-80 md:w-1/2 px-4 md:p-6 shadow-xl flex justify-center items-center mt-4 md:mt-7'>
-                        <Input className="h-10 rounded-l-2xl border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm md:text-md" placeholder={`Ej: ${placeholders[Math.floor(Math.random() * placeholders.length)]}`} />
-                        <button type='submit'>
-                            <SearchMD size="24" className='h-10 w-4 md:w-6 bg-blue-500 hover:bg-blue-900 transition-colors text-white px-3 box-content rounded-r-2xl' />
-                        </button>
-                    </div>
-                </section>
-                <section className='mt-7'>
-                    <div>
-                        {/* ULTIMOS ANUNCIOS */}
-                    </div>
-                    <div>
-                        {/* LATEST ADVERTS */}
-                    </div>
-                </section>
-                <section className='mt-7  md:mx-20'>
-                    <h3 className='text-lg md:text-2xl font-medium'>Categorías más populares</h3>
-                    <div className='grid grid-cols-2 md:grid-cols-3 grid-rows-3 gap-5 mt-3'>
-                        <div className="bg-[#eff4ff] flex items-center gap-5">
-                            <div>
-                                <SearchMD size="24" className='w-[4.5rem] h-[4.5rem] bg-[#3B76F6] p-3 rounded-xl' />
+        <div className=''>
+            <section className='flex flex-col items-center justify-center px-5 py-10 md:py-36 gap-5 bg-gray-200'>
+                <div className='flex flex-col items-center justify-center text-center'>
+                    <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-balance'>Publicá tu Anuncio <span className='text-blue-500'>Gratis</span></h1>
+                    <p className="max-w-lg text-gray-500 text-md md:text-lg text-balance">Conectá con el público, vendé, contratá o publicitá: todo en un solo lugar, sin costo alguno.</p>
+                </div>
+                <Link to="/publicar">
+                    <Button className="bg-blue-500 hover:bg-blue-900 w-40 md:w-80 h-14">Publicar</Button>
+                </Link>
+            </section>
+
+            <section className='py-10 md:py-36 flex flex-col items-center'>
+                <div className='text-center mb-10 md:mb-0'>
+                    <h2 className='text-xl md:text-3xl font-bold'>Encontrá exactamente lo que necesitás</h2>
+                    <p className='max-w-md md:max-w-lg text-gray-500 text-md '>Buscá por palabras clave, categoría o ubicación para obtener los resultados que buscás.</p>
+                </div>
+                <SearchForm />
+            </section>
+
+            <section className='px-5 py-10 md:py-20 flex flex-col items-center bg-gray-200'>
+                <h2 className='text-xl md:text-3xl font-bold'>Cómo funciona</h2>
+                <div className='mt-5'>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="flex flex-col items-center text-center">
+                            <div className="bg-[#3b82f6] text-white rounded-full p-3 mb-4">
+                                <PlusCircle className="h-8 w-8" />
                             </div>
-                            <div>
-                                <p className="font-medium text-lg">Marketing</p>
-                                <p className="text-md text-neutral-600">3.741 anuncios</p>
+                            <h3 className="text-xl font-semibold mb-2">Crea tu anuncio</h3>
+                            <p className="text-gray-600">Regístrate gratis y crea tu anuncio fácilmente en minutos</p>
+                        </div>
+                        <div className="flex flex-col items-center text-center">
+                            <div className="bg-[#3b82f6] text-white rounded-full p-3 mb-4">
+                                <Users01 className="h-8 w-8" />
                             </div>
+                            <h3 className="text-xl font-semibold mb-2">Alcanza tu audiencia</h3>
+                            <p className="text-gray-600">Tu anuncio es visible inmediatamente para cientos de personas</p>
+                        </div>
+                        <div className="flex flex-col items-center text-center">
+                            <div className="bg-[#3b82f6] text-white rounded-full p-3 mb-4">
+                                <TrendUp01 className="h-8 w-8" />
+                            </div>
+                            <h3 className="text-xl font-semibold mb-2">Potencia tu negocio</h3>
+                            <p className="text-gray-600">Sigue el rendimiento de tus anuncios y observa cómo crecen</p>
                         </div>
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
+
+            <section className='px-5 py-10 md:py-20 flex flex-col items-center'>
+                <h2 className="text-3xl font-bold text-center mb-12">Explorá nuestras categorías</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    {[
+                        { icon: Circle, label: "Motor" },
+                        { icon: Home03, label: "Inmobiliaria" },
+                        { icon: BriefCase01, label: "Empleo" },
+                        { icon: Announcement01, label: "Servicios" },
+                        { icon: Monitor05, label: "Informática" },
+                        { icon: ShoppingBag02, label: "Moda" },
+                    ].map((category, index) => (
+                        <div key={index} className="flex flex-col items-center space-y-2 group">
+                            <Link to={`/anuncios?category=${category.label}`} className="p-4 bg-[#3b82f6]/10 rounded-full transition-colors group-hover:bg-[#3b82f6]/20">
+                                <category.icon className="h-8 w-8 text-[#3b82f6]" />
+                            </Link>
+                            <span className="text-sm font-medium">{category.label}</span>
+                        </div>
+                    ))}
+                </div>
+                <Link>
+                    <Button className="mt-8 bg-blue-500 hover:bg-blue-900">Ver todas las categorías</Button>
+                </Link>
+            </section>
+
+            <section className='px-5 py-10 md:py-20 flex flex-col items-center bg-gray-200'>
+                <h2 className="text-3xl font-bold text-center mb-12">¿Por qué elegir AnunciosUy?</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="flex items-start space-x-4">
+                        <PlusCircle className="h-6 w-6 text-[#3b82f6] mt-1" />
+                        <div>
+                            <h3 className="text-xl font-semibold mb-2">100% Gratuito</h3>
+                            <p className="text-gray-600">Publicá y gestioná tus anuncios sin costos escondidos ni comisiones.</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start space-x-4">
+                        <Users01 className="h-6 w-6 text-[#3b82f6] mt-1" />
+                        <div>
+                            <h3 className="text-xl font-semibold mb-2">Larga audienca</h3>
+                            <p className="text-gray-600">Alcanza cientos de ponteciales compradores mediante varias categorías.</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start space-x-4">
+                        <TrendUp01 className="h-6 w-6 text-[#3b82f6] mt-1" />
+                        <div>
+                            <h3 className="text-xl font-semibold mb-2">Seguimiento de rendimiento</h3>
+                            <p className="text-gray-600">Monitoreá el rendimiento de tu anuncio con nuestras estadísticas.</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start space-x-4">
+                        <Circle className="h-6 w-6 text-[#3b82f6] mt-1" />
+                        <div>
+                            <h3 className="text-xl font-semibold mb-2">Plataforma segura</h3>
+                            <p className="text-gray-600">Tus datos están seguros ya que nunca te vamos a pedir información sensibles.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     )
 }

@@ -8,12 +8,12 @@ const AppLayout = () => {
     return (
         <div>
             <main className="bg-[#f9f9f9]">
-                <div className="min-h-screen container mx-auto">
-                    <Header />
+                <Header />
+                <div className="min-h-screen">
                     <Outlet />
                 </div>
             </main>
-            <Toaster 
+            <Toaster
                 position="top-center"
                 reverseOrder={false} />
             {/* <Footer /> */}

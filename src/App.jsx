@@ -8,6 +8,7 @@ import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import Post from './pages/Post'
 import MyAdvert from './pages/MyAdvert'
+import NotFound from './pages/NotFound'
 
 function App() {
   const router = createBrowserRouter([
@@ -20,17 +21,21 @@ function App() {
         },
         {
           path: "/publicar",
-          element: 
-          <ProtectedRoute>
-            <Post />
-          </ProtectedRoute>
+          element:
+            <ProtectedRoute>
+              <Post />
+            </ProtectedRoute>
         },
         {
           path: "/publicar/mi-anuncio/:id",
-          element: 
-          <ProtectedRoute>
-            <MyAdvert />
-          </ProtectedRoute>
+          element:
+            <ProtectedRoute>
+              <MyAdvert />
+            </ProtectedRoute>
+        },
+        {
+          path: "*",
+          element: <NotFound />
         }
       ],
     },
