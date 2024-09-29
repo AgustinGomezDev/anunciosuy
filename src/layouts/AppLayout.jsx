@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from "react-router-dom"
-// import footer from "@/components/footer"
+import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 import { Toaster } from 'react-hot-toast';
 
@@ -16,7 +16,7 @@ const AppLayout = () => {
             <Toaster
                 position="top-center"
                 reverseOrder={false} />
-            {/* <Footer /> */}
+            <Footer />
         </div>
     )
 }

@@ -9,6 +9,8 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Post from './pages/Post'
 import MyAdvert from './pages/MyAdvert'
 import NotFound from './pages/NotFound'
+import Adverts from './pages/Adverts'
+import AdvertDetail from './pages/AdvertDetail'
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +34,14 @@ function App() {
             <ProtectedRoute>
               <MyAdvert />
             </ProtectedRoute>
+        },
+        {
+          path: "/anuncios",
+          element: <Adverts />
+        },
+        {
+          path: "/anuncios/:id",
+          element: <AdvertDetail />
         },
         {
           path: "*",

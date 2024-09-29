@@ -1,388 +1,106 @@
 [
     {
-        "id": 100,
-        "category": "Motor",
-        "subcategories": [
-            {
-                "id": 101,
-                "subcategory": "Coches"
-            },
-            {
-                "id": 102,
-                "subcategory": "Motos"
-            },
-            {
-                "id": 103,
-                "subcategory": "Furgonetas camper"
-            },
-            {
-                "id": 104,
-                "subcategory": "Autocaravanas"
-            },
-            {
-                "id": 105,
-                "subcategory": "Caravanas"
-            }
-        ]
+        "id": 1,
+        "name": "Autos"
     },
     {
-        "id": 200,
-        "category": "Inmobiliaria",
-        "subcategories": [
-            {
-                "id": 201,
-                "subcategory": "Pisos en alquiler"
-            },
-            {
-                "id": 202,
-                "subcategory": "Pisos en venta"
-            },
-            {
-                "id": 203,
-                "subcategory": "Casas en alquiler"
-            },
-            {
-                "id": 204,
-                "subcategory": "Casas prefabricadas"
-            },
-            {
-                "id": 205,
-                "subcategory": "Compartir piso"
-            }
-        ]
+        "id": 2,
+        "name": "Motos"
     },
     {
-        "id": 300,
-        "category": "Empleo",
-        "subcategories": [
-            {
-                "id": 301,
-                "subcategory": "Teletrabajo"
-            },
-            {
-                "id": 302,
-                "subcategory": "Comerciales"
-            },
-            {
-                "id": 303,
-                "subcategory": "Conductores"
-            },
-            {
-                "id": 304,
-                "subcategory": "Construcción"
-            },
-            {
-                "id": 305,
-                "subcategory": "Cocineros y Camareros"
-            }
-        ]
+        "id": 3,
+        "name": "Camionetas"
     },
     {
-        "id": 400,
-        "category": "Formación y libros",
-        "subcategories": [
-            {
-                "id": 401,
-                "subcategory": "Libros Harry Potter"
-            },
-            {
-                "id": 402,
-                "subcategory": "Libros Juego de Tronos"
-            },
-            {
-                "id": 403,
-                "subcategory": "Cuentos Disney"
-            },
-            {
-                "id": 404,
-                "subcategory": "Novelas"
-            },
-            {
-                "id": 405,
-                "subcategory": "Cómics Superlópez"
-            }
-        ]
+        "id": 4,
+        "name": "Camiones"
     },
     {
-        "id": 500,
-        "category": "Servicios",
-        "subcategories": [
-            {
-                "id": 501,
-                "subcategory": "Reformas"
-            },
-            {
-                "id": 502,
-                "subcategory": "Mudanzas"
-            },
-            {
-                "id": 503,
-                "subcategory": "Cerrajeros 24 horas"
-            },
-            {
-                "id": 504,
-                "subcategory": "Carpinteros"
-            },
-            {
-                "id": 505,
-                "subcategory": "Clases particulares"
-            }
-        ]
+        "id": 5,
+        "name": "Repuestos Autos"
     },
     {
-        "id": 600,
-        "category": "Negocios",
-        "subcategories": [
-            {
-                "id": 601,
-                "subcategory": "Traspasos"
-            },
-            {
-                "id": 602,
-                "subcategory": "Venta de empresas"
-            },
-            {
-                "id": 603,
-                "subcategory": "Oportunidades de negocio"
-            },
-            {
-                "id": 604,
-                "subcategory": "Mobiliario oficina"
-            },
-            {
-                "id": 605,
-                "subcategory": "Mobiliario de hostelería"
-            }
-        ]
+        "id": 6,
+        "name": "Repuestos Motos"
     },
     {
-        "id": 700,
-        "category": "Informática",
-        "subcategories": [
-            {
-                "id": 701,
-                "subcategory": "iPad Pro"
-            },
-            {
-                "id": 702,
-                "subcategory": "Portátil Samsung"
-            },
-            {
-                "id": 703,
-                "subcategory": "Macbook Pro"
-            },
-            {
-                "id": 704,
-                "subcategory": "Ordenador gaming"
-            },
-            {
-                "id": 705,
-                "subcategory": "Tarjeta gráfica Nvidia"
-            }
-        ]
+        "id": 7,
+        "name": "Bicicletas"
     },
     {
-        "id": 800,
-        "category": "Imagen y Sonido",
-        "subcategories": [
-            {
-                "id": 801,
-                "subcategory": "Nikon D7200"
-            },
-            {
-                "id": 802,
-                "subcategory": "GoPro"
-            },
-            {
-                "id": 803,
-                "subcategory": "Televisores Samsung"
-            },
-            {
-                "id": 804,
-                "subcategory": "Airpods"
-            },
-            {
-                "id": 805,
-                "subcategory": "Ukelele"
-            }
-        ]
+        "id": 8,
+        "name": "Repuestos Bicicletas"
     },
     {
-        "id": 900,
-        "category": "Móviles y telefonía",
-        "subcategories": [
-            {
-                "id": 901,
-                "subcategory": "iPhone 12"
-            },
-            {
-                "id": 902,
-                "subcategory": "iPhone 11 Pro"
-            },
-            {
-                "id": 903,
-                "subcategory": "Móviles Oneplus"
-            },
-            {
-                "id": 904,
-                "subcategory": "Móviles Google Pixel"
-            },
-            {
-                "id": 905,
-                "subcategory": "Apple Watch"
-            }
-        ]
+        "id": 9,
+        "name": "Inmuebles"
     },
     {
-        "id": 1000,
-        "category": "Juegos",
-        "subcategories": [
-            {
-                "id": 1001,
-                "subcategory": "PlayStation 5"
-            },
-            {
-                "id": 1002,
-                "subcategory": "PlayStation 4"
-            },
-            {
-                "id": 1003,
-                "subcategory": "Nintendo Switch"
-            },
-            {
-                "id": 1004,
-                "subcategory": "Xbox Series X"
-            },
-            {
-                "id": 1005,
-                "subcategory": "Futbolines"
-            }
-        ]
+        "id": 10,
+        "name": "Alquiler de Inmuebles"
     },
     {
-        "id": 1100,
-        "category": "Casa y Jardín",
-        "subcategories": [
-            {
-                "id": 1101,
-                "subcategory": "Aire Acondicionado"
-            },
-            {
-                "id": 1102,
-                "subcategory": "Barbacoas"
-            },
-            {
-                "id": 1103,
-                "subcategory": "Piscinas de poliéster"
-            },
-            {
-                "id": 1104,
-                "subcategory": "Cortacésped de gasolina"
-            },
-            {
-                "id": 1105,
-                "subcategory": "Casetas de jardín"
-            }
-        ]
+        "id": 11,
+        "name": "Empleo"
     },
     {
-        "id": 1200,
-        "category": "Moda y complementos",
-        "subcategories": [
-            {
-                "id": 1201,
-                "subcategory": "Bolsos Loewe"
-            },
-            {
-                "id": 1202,
-                "subcategory": "Bolsos Bimba y Lola"
-            },
-            {
-                "id": 1203,
-                "subcategory": "Traje Fallera"
-            },
-            {
-                "id": 1204,
-                "subcategory": "Vestidos de fiesta"
-            },
-            {
-                "id": 1205,
-                "subcategory": "Vestidos de novia"
-            }
-        ]
+        "id": 12,
+        "name": "Servicios"
     },
     {
-        "id": 1300,
-        "category": "Bebés",
-        "subcategories": [
-            {
-                "id": 1301,
-                "subcategory": "Cunas de viaje"
-            },
-            {
-                "id": 1302,
-                "subcategory": "Carritos Bugaboo"
-            },
-            {
-                "id": 1303,
-                "subcategory": "Carritos Jané Muum"
-            },
-            {
-                "id": 1304,
-                "subcategory": "Maxi-Cosi"
-            },
-            {
-                "id": 1305,
-                "subcategory": "Silla infantil para coche"
-            }
-        ]
+        "id": 13,
+        "name": "Electrónica"
     },
     {
-        "id": 1400,
-        "category": "Aficiones y ocio",
-        "subcategories": [
-            {
-                "id": 1401,
-                "subcategory": "Coleccionismo"
-            },
-            {
-                "id": 1402,
-                "subcategory": "Drones Xiaomi"
-            },
-            {
-                "id": 1403,
-                "subcategory": "Cómics Mortadelo y Filemón"
-            },
-            {
-                "id": 1404,
-                "subcategory": "Monedas de colección"
-            },
-            {
-                "id": 1405,
-                "subcategory": "Cartas Pokemon"
-            }
-        ]
+        "id": 14,
+        "name": "Repuestos Electrónicos"
     },
     {
-        "id": 1500,
-        "category": "Deportes y náutica",
-        "subcategories": [
-            {
-                "id": 1501,
-                "subcategory": "Patinete eléctrico Xiaomi"
-            },
-            {
-                "id": 1502,
-                "subcategory": "Bicicletas BMX"
-            },
-            {
-                "id": 1503,
-                "subcategory": "Bicicletas eléctricas"
-            },
-            {
-                "id": 1504,
-                "subcategory": "Kayak rígido"
-            }
-        ]
+        "id": 15,
+        "name": "Computadoras y Consolas"
+    },
+    {
+        "id": 16,
+        "name": "Electrodomésticos"
+    },
+    {
+        "id": 17,
+        "name": "Muebles"
+    },
+    {
+        "id": 18,
+        "name": "Hogar y Jardín"
+    },
+    {
+        "id": 19,
+        "name": "Moda"
+    },
+    {
+        "id": 20,
+        "name": "Accesorios de Moda"
+    },
+    {
+        "id": 21,
+        "name": "Juegos y Juguetes"
+    },
+    {
+        "id": 22,
+        "name": "Imagen y Sonido"
+    },
+    {
+        "id": 23,
+        "name": "Celulares"
+    },
+    {
+        "id": 24,
+        "name": "Deportes"
+    },
+    {
+        "id": 25,
+        "name": "Mascotas"
+    },
+    {
+        "id": 26,
+        "name": "Libros"
     }
 ]

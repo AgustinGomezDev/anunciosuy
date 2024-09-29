@@ -73,9 +73,7 @@ export function ProfileForm() {
 
             if (res.data) {
                 toast.success("¡Bienvenido! Tu cuenta ha sido registrada con éxito. Te redirigiremos para que puedas iniciar sesión.");
-                setTimeout(() => {
-                    navigate("/inicio-sesion");
-                }, 3000)
+                navigate("/inicio-sesion");
             } else {
                 throw new Error("Parece que hubo un problema con la respuesta del servidor. Estamos trabajando para solucionarlo.");
             }

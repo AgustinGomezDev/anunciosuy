@@ -27,6 +27,7 @@ import { useAuth } from '@/context/AuthContext';
 import { postRequest } from '@/api/adverts.api';
 import { Textarea } from './ui/textarea';
 import locationData from "../data/location.json"
+import categoryData from "../data/category.json"
 
 const formSchema = z.object({
     title: z.string().min(5, {
@@ -47,7 +48,7 @@ const formSchema = z.object({
         if (isNaN(parsed)) {
             ctx.addIssue({
                 code: z.ZodIssueCode.custom,
-                message: "Not a number",
+                message: "Lo que has ingresado no es un número",
             });
             return z.NEVER;
         }
@@ -65,7 +66,7 @@ export function ProfileForm() {
             description: "",
             category: "",
             location: "",
-            price: 0
+            price: '0'
         },
     });
 
@@ -80,7 +81,7 @@ export function ProfileForm() {
 
             if (res.data.data.advert) {
                 toast.success("¡Anuncio publicado con éxito!");
-                if(!loading){
+                if (!loading) {
                     navigate(`/publicar/mi-anuncio/${res.data.data.advert._id}`)
                 }
             }
@@ -90,9 +91,11 @@ export function ProfileForm() {
         }
     }
 
+    const sortedCategories = categoryData.sort((a, b) => a.name.localeCompare(b.name))
+
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 py-10 px-40">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 py-10 px-5 lg:px-40">
                 <FormField
                     control={form.control}
                     name="title"
@@ -125,7 +128,7 @@ export function ProfileForm() {
                         </FormItem>
                     )}
                 />
-                <div className='flex flex-col md:flex-row md:justify-center gap-10'>
+                <div className='flex flex-col lg:flex-row  gap-10'>
                     <FormField
                         control={form.control}
                         name="category"
@@ -139,7 +142,7 @@ export function ProfileForm() {
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        {locationData.map(({ id, name }) => {
+                                        {sortedCategories.map(({ id, name }) => {
                                             return (
                                                 <SelectItem key={id} value={name}>
                                                     {name}
@@ -192,10 +195,10 @@ export function ProfileForm() {
                         <FormItem>
                             <FormLabel>Precio</FormLabel>
                             <FormControl>
-                                <Input type="number" {...field} />
+                                <Input {...field} />
                             </FormControl>
                             <FormDescription>
-                                Este es el precio que se va a mostrar en tu anuncio.
+                                Este es el precio que se va a mostrar en tu anuncio, en caso de no tener precio dejar en 0.
                             </FormDescription>
                             <FormMessage />
                         </FormItem>

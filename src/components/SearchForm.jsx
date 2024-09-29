@@ -18,7 +18,9 @@ import {
 import { Input } from '@/components/ui/input'
 import { SearchMD } from "untitledui-js-base"
 import locationData from "../data/location.json"
+import categoryData from "../data/category.json"
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 const placeholders = [
     "Servicio de marketing",
@@ -73,6 +75,7 @@ const placeholders = [
 ]
 
 const SearchForm = () => {
+    const navigate = useNavigate()
     const form = useForm({
         defaultValues: {
             title: "",
@@ -83,11 +86,13 @@ const SearchForm = () => {
 
     async function onSubmit(values) {
         try {
-
+            navigate(`/anuncios?query=${values.title}&category=${values.category}&location=${values.location}`)
         } catch (error) {
             toast.error("Lo sentimos, ha ocurrido un error inesperado.");
         }
     }
+
+    const sortedCategories = categoryData.sort((a, b) => a.name.localeCompare(b.name))
 
     return (
         <div className='md:p-6 flex justify-center items-center'>
@@ -95,10 +100,11 @@ const SearchForm = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col md:flex-row items-center'>
                     <FormField
                         control={form.control}
-                        name="query"
+                        name="title"
                         render={({ field }) => (
                             <FormItem>
                                 <Input
+                                    {...field}
                                     className="h-10 w-60 md:w-96 border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm md:text-md px-5"
                                     placeholder={`${placeholders[Math.floor(Math.random() * placeholders.length)]}`}
                                 />
@@ -111,12 +117,18 @@ const SearchForm = () => {
                             name="category"
                             render={({ field }) => (
                                 <FormItem>
-                                    <Select>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <SelectTrigger className="focus-visible:ring-0 focus-visible:ring-offset-0 w-32">
                                             <SelectValue placeholder="Categoría" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem></SelectItem>
+                                        {sortedCategories.map(({ id, name }) => {
+                                                return (
+                                                    <SelectItem key={id} value={name}>
+                                                        {name}
+                                                    </SelectItem>
+                                                );
+                                            })}
                                         </SelectContent>
                                     </Select>
                                 </FormItem>
@@ -124,10 +136,10 @@ const SearchForm = () => {
                         />
                         <FormField
                             control={form.control}
-                            name="category"
+                            name="location"
                             render={({ field }) => (
                                 <FormItem>
-                                    <Select>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <SelectTrigger className="focus-visible:ring-0 focus-visible:ring-offset-0 w-32">
                                             <SelectValue placeholder="Ubicación" />
                                         </SelectTrigger>

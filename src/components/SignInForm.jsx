@@ -49,9 +49,7 @@ export function ProfileForm() {
 
             if (res.data) {
                 toast.success("Sesión iniciada, te redirigiremos al inicio.");
-                setTimeout(() => {
-                    navigate("/");
-                }, 2000)
+                navigate("/");
             } else {
                 throw new Error("Parece que hubo un problema con la respuesta del servidor. Estamos trabajando para solucionarlo.");
             }

@@ -13,7 +13,12 @@ export async function postRequest(advertData) {
 }
 
 export async function getRequest(query) {
-    const url = query ?  `/adverts/adverts?${query}` : '/adverts/adverts'
+    const queryParams = Object.entries(query)
+        .filter(([key, value]) => value !== undefined && value !== null)
+        .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+        .join('&')
+
+    const url = queryParams ? `/adverts/adverts?${queryParams}` : '/adverts/adverts';
 
     try {
         const res = await axios.get(url)
