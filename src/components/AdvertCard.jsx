@@ -28,7 +28,7 @@ function formatPrice(price) {
 
 const AdvertCard = ({ id, image, title, description, createdAt, location, price, category }) => {
     return (
-        <Link id={id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-4 transition relative h-96" to={`/anuncios/${id}`}>
+        <Link id={id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-4 transition relative h-96 w-[15rem] 2xl:w-80" to={`/anuncios/${id}`}>
             <img
                 src={image}
                 alt={title}

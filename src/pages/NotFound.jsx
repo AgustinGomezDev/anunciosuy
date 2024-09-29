@@ -19,7 +19,7 @@ const NotFound = () => {
                     <div className="space-y-4">
                         <p className="text-lg text-gray-600">Algunos enlaces que pueden ayudarte:</p>
                         <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4">
-                            <Button className="bg-blue-500 hover:bg-blue-900 w-full sm:w-auto">
+                            <Button className="w-full sm:w-auto" variant="primary">
                                 <Link to="/" className='flex items-center gap-2'>
                                     <Home03 className="mr-2 h-4 w-4" />
                                     Ir al inicio

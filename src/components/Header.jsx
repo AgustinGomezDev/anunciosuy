@@ -44,7 +44,7 @@ const Header = () => {
               (
                 <div className='flex gap-1'>
                   <Link to="/publicar">
-                    <Button className="flex gap-1 justify-between bg-blue-500 hover:bg-blue-900">
+                    <Button className="flex gap-1 justify-between" variant="primary">
                       <Plus size="22" />
                       Publicar
                     </Button>
@@ -59,7 +59,7 @@ const Header = () => {
               (
                 <div className='flex gap-1'>
                   <Link to="/inicio-sesion">
-                    <Button className="bg-blue-500 hover:bg-blue-900">Iniciar sesión</Button>
+                    <Button variant="primary">Iniciar sesión</Button>
                   </Link>
                   <Link to="/registro">
                     <Button variant="outline">Registrarme gratis</Button>
@@ -97,7 +97,7 @@ const Header = () => {
                 <>
                   <li>
                     <Link to="/inicio-sesion">
-                      <Button className="w-full bg-blue-500 hover:bg-blue-900">Iniciar sesión</Button>
+                      <Button className="w-full" variant="primary">Iniciar sesión</Button>
                     </Link>
                   </li>
                   <li>

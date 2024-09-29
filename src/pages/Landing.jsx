@@ -49,7 +49,7 @@ const Landing = () => {
                     <p className="max-w-lg text-gray-500 text-md md:text-lg text-balance">Conectá con el público, vendé, contratá o publicitá: todo en un solo lugar, sin costo alguno.</p>
                 </div>
                 <Link to="/publicar">
-                    <Button className="bg-blue-500 hover:bg-blue-900 w-40 md:w-80 h-14">Publicar</Button>
+                    <Button className="w-40 md:w-80 h-14" variant="primary">Publicar</Button>
                 </Link>
             </section>
 
@@ -66,7 +66,7 @@ const Landing = () => {
                 <LatestAdverts />
 
                 <Link to="/anuncios" className="text-center mt-8">
-                    <Button className="bg-blue-500 hover:bg-blue-900">Ver todos los anuncios</Button>
+                    <Button variant="primary">Ver todos los anuncios</Button>
                 </Link>
             </section>
 
@@ -90,7 +90,7 @@ const Landing = () => {
                     ))}
                 </div>
                 <Link>
-                    <Button className="mt-8 bg-blue-500 hover:bg-blue-900">Ver todas las categorías</Button>
+                    <Button variant="primary">Ver todas las categorías</Button>
                 </Link>
             </section>
 
