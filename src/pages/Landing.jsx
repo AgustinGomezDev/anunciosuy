@@ -74,11 +74,11 @@ const Landing = () => {
                 <h2 className="text-3xl font-bold text-center mb-12">Explorá nuestras categorías</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
                     {[
-                        { icon: Circle, label: "Motor" },
-                        { icon: Home03, label: "Inmobiliaria" },
+                        { icon: Circle, label: "Autos" },
+                        { icon: Home03, label: "Inmuebles" },
                         { icon: BriefCase01, label: "Empleo" },
                         { icon: Announcement01, label: "Servicios" },
-                        { icon: Monitor05, label: "Informática" },
+                        { icon: Monitor05, label: "Computadoras y Consolas" },
                         { icon: ShoppingBag02, label: "Moda" },
                     ].map((category, index) => (
                         <div key={index} className="flex flex-col items-center space-y-2 group">
@@ -90,7 +90,7 @@ const Landing = () => {
                     ))}
                 </div>
                 <Link>
-                    <Button variant="primary">Ver todas las categorías</Button>
+                    <Button variant="primary" className="mt-5">Ver todas las categorías</Button>
                 </Link>
             </section>
 
