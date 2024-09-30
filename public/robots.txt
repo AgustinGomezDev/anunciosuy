@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /publicar/mi-anuncio/
+Disallow: /inicio-sesion
+Disallow: /registro
+Allow: /
+
+Sitemap: https://www.anunciosuy.com/sitemap.xml
