@@ -45,6 +45,7 @@ const LatestAdverts = () => {
                         location={advert.location}
                         price={advert.price}
                         createdAt={advert.createdAt}
+                        image={advert.images[0]}
                     />
                 ))
                 : <p className='text-center col-span-full text-lg'>No hay anuncios publicados 😢</p>}

@@ -7,6 +7,13 @@ import { Clock, MarkerPin01, ArrowLeft } from "untitledui-js-base"
 import { timeSince } from '@/utils/timeSince'
 import { formatPrice } from '@/utils/formatPrice'
 import { useNavigate } from 'react-router-dom'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 const AdvertDetail = () => {
   const [advert, setAdvert] = useState(null)
@@ -38,6 +45,7 @@ const AdvertDetail = () => {
       />
     )
 
+  // console.log('ADVERT:', advert)
   return (
     <div className='container mx-auto py-5 min-h-screen px-5'>
       <div className='inline-block mb-3 group' onClick={() => navigate(-1)}>
@@ -48,7 +56,19 @@ const AdvertDetail = () => {
       </div>
       <div className='flex flex-col gap-5 md:flex-row'>
         <div>
-          <img className='w-[30rem] h-[30rem]' src="https://t4.ftcdn.net/jpg/05/17/53/57/360_F_517535712_q7f9QC9X6TQxWi6xYZZbMmw5cnLMr279.jpg" alt="" />
+
+          <Carousel className="w-[40rem]" opts={{ loop: true }}>
+            <CarouselContent>
+              {advert.images.map((image) => (
+                <CarouselItem key={image}>
+                  <img className='w-[40rem]' src={image} alt="Imagén del producto del anuncio." />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+
         </div>
         <div>
           <h3 className='text-2xl font-bold'>{advert.title}</h3>

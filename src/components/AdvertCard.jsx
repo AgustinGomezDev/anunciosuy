@@ -9,8 +9,8 @@ const AdvertCard = ({ id, image, title, description, createdAt, location, price,
         <Link id={id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-4 transition relative h-96 w-[15rem] 2xl:w-80" to={`/anuncios/${id}`}>
             <img
                 src={image}
-                alt={title}
-                className="w-full h-48"
+                alt='Imagén del producto del anuncio'
+                className="w-full h-52"
             />
             <div className="p-4 border-t h-full">
                 <div className=''>

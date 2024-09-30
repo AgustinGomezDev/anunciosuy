@@ -28,6 +28,7 @@ import { postRequest } from '@/api/adverts.api';
 import { Textarea } from './ui/textarea';
 import locationData from "../data/location.json"
 import categoryData from "../data/category.json"
+import { uploadImage } from '@/firebase/upload';
 
 const formSchema = z.object({
     title: z.string().min(5, {
@@ -53,7 +54,8 @@ const formSchema = z.object({
             return z.NEVER;
         }
         return parsed;
-    })
+    }),
+    images: z.instanceof(FileList).refine((file) => file?.length > 0, 'Debes subir al menos 1 imagén.')
 })
 
 export function ProfileForm() {
@@ -66,15 +68,28 @@ export function ProfileForm() {
             description: "",
             category: "",
             location: "",
-            price: '0'
+            price: '0',
+            images: ''
         },
     });
+
+    const imagesRef = form.register("images");
 
     const { fn: PostAdvert, loading } = useFetch(postRequest)
 
     async function onSubmit(values) {
         try {
-            const res = await PostAdvert(values)
+            const imageUploadPromises = Array.from(values.images).map(image => uploadImage(image));
+            const imageUrls = await Promise.all(imageUploadPromises)
+
+            const advertData = {
+                ...values,
+                images: imageUrls
+            };
+
+            console.log(advertData)
+
+            const res = await PostAdvert(advertData)
             if (!res || res.error) {
                 throw new Error(res?.error || 'Ups, algo salió mal al intentar registrar tu cuenta. ¡Inténtalo de nuevo!');
             }
@@ -82,7 +97,7 @@ export function ProfileForm() {
             if (res.data.data.advert) {
                 toast.success("¡Anuncio publicado con éxito!");
                 if (!loading) {
-                    navigate(`/publicar/mi-anuncio/${res.data.data.advert._id}`)
+                    navigate(`/anuncios/${res.data.data.advert._id}`)
                 }
             }
 
@@ -123,6 +138,22 @@ export function ProfileForm() {
                             </FormControl>
                             <FormDescription>
                                 Esta es la descripción pública que se va a mostrar en tu anuncio.
+                            </FormDescription>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="images"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Imagenes</FormLabel>
+                            <FormControl>
+                                <Input type="file" multiple {...imagesRef} />
+                            </FormControl>
+                            <FormDescription>
+                                Estas van a ser las imagénes que se van a mostrar en tu anuncio.
                             </FormDescription>
                             <FormMessage />
                         </FormItem>

@@ -79,7 +79,7 @@ const AdvertsContainer = () => {
                 <p>{errorMessage}</p>
             ) : (
                 adverts.map(advert => (
-                    <AdvertCard key={advert._id} id={advert._id} title={advert.title} description={advert.description} location={advert.location} price={advert.price} createdAt={advert.createdAt} category={advert.category} />
+                    <AdvertCard key={advert._id} id={advert._id} title={advert.title} description={advert.description} location={advert.location} price={advert.price} createdAt={advert.createdAt} category={advert.category} image={advert.images[0]} />
                 ))
             )}</div>
         </div>
