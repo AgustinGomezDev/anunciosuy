@@ -1,7 +1,7 @@
 import { getRequestById } from '@/api/adverts.api'
 import useFetch from '@/hooks/useFetch'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { zoomies } from 'ldrs'
 import { Clock, MarkerPin01, ArrowLeft } from "untitledui-js-base"
 import { timeSince } from '@/utils/timeSince'
@@ -14,12 +14,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { Button } from '@/components/ui/button'
+import WhatsAppIcon from '@/components/icons/Whatsapp'
+import { useAuth } from '@/context/AuthContext'
+import Rating from '@/components/Rating'
 
 const AdvertDetail = () => {
   const [advert, setAdvert] = useState(null)
   const { fn: GetAdvert, loading } = useFetch(getRequestById)
   let { id } = useParams()
   const navigate = useNavigate()
+  const { user } = useAuth()
   zoomies.register()
 
   useEffect(() => {
@@ -34,6 +39,14 @@ const AdvertDetail = () => {
     fetchAdvert()
   }, [id])
 
+  const handlePhoneNumber = () => {
+    let phoneNumber = user.phone
+
+    if (!phoneNumber.startsWith('+598')) phoneNumber = `+598${phoneNumber}`
+
+    return phoneNumber
+  }
+
   if (loading || !advert)
     return (
       <l-zoomies
@@ -45,7 +58,6 @@ const AdvertDetail = () => {
       />
     )
 
-  // console.log('ADVERT:', advert)
   return (
     <div className='container mx-auto py-5 min-h-screen px-5'>
       <div className='inline-block mb-3 group' onClick={() => navigate(-1)}>
@@ -57,7 +69,7 @@ const AdvertDetail = () => {
       <div className='flex flex-col gap-5 md:flex-row'>
         <div>
 
-          <Carousel className="w-[40rem]" opts={{ loop: true }}>
+          <Carousel className="w-[30rem] md:w-[40rem]" opts={{ loop: true }}>
             <CarouselContent>
               {advert.images.map((image) => (
                 <CarouselItem key={image}>
@@ -81,6 +93,12 @@ const AdvertDetail = () => {
               <MarkerPin01 className="w-4 h-4" />
               <span>{advert.location}</span>
             </div>
+          </div>
+          <div className='flex flex-col lg:flex-row lg:items-center justify-between'>
+            <Link to={`https://wa.me/${handlePhoneNumber()}`} target='_blank'>
+              <Button variant="wpp" className="my-4 flex gap-2 items-center">Contactar por WhatsApp<WhatsAppIcon className="w-5 h-5" /></Button>
+            </Link>
+            {/* <Rating startingRate={advert.rating.score} /> */}
           </div>
           <hr className='my-1' />
           <p className='text-md text-gray-700 max-w-xl'>{advert.description}</p>

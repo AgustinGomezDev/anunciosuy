@@ -10,7 +10,7 @@ const AdvertCard = ({ id, image, title, description, createdAt, location, price,
             <img
                 src={image}
                 alt='Imagén del producto del anuncio'
-                className="w-full h-52"
+                className="w-full h-40 md:h-52"
             />
             <div className="p-4 border-t h-full">
                 <div className=''>
@@ -27,7 +27,7 @@ const AdvertCard = ({ id, image, title, description, createdAt, location, price,
                     </div>
                     <div className="flex items-center text-xl font-bold text-[#3b82f6] mb-2">
                         {/* <DollarSign className="w-4 h-4 mr-1" /> */}
-                        <span>{ formatPrice(price) === '0' ? '' : `$${formatPrice(price)}` }</span>
+                        <span>{formatPrice(price) === '0' ? '' : `$${formatPrice(price)}`}</span>
                     </div>
                 </div>
                 <span className="inline-block bg-gray-200/50 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 absolute top-0 right-0 m-3">
