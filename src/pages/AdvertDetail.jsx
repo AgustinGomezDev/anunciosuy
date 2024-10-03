@@ -107,6 +107,7 @@ const AdvertDetail = () => {
         </div>
         <div>
           <h3 className='text-2xl font-bold'>{advert.title}</h3>
+          <p className='text-2xl font-bold text-[#3b82f6]'>{formatPrice(advert.price) === '0' ? '' : `$${formatPrice(advert.price)}`}</p>
           <div className='flex gap-5 items-center text-gray-500 '>
             <div className='flex items-center gap-1'>
               <Clock className="w-4 h-4 mr-1" />
@@ -131,7 +132,6 @@ const AdvertDetail = () => {
           </div>
           <hr className='my-1' />
           <p className='text-md text-gray-700 max-w-xl'>{advert.description}</p>
-          <p className='text-xl font-bold text-[#3b82f6]'>{formatPrice(advert.price) === '0' ? '' : `$${formatPrice(advert.price)}`}</p>
         </div>
       </div>
     </div>
