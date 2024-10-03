@@ -28,7 +28,8 @@ const Header = () => {
 
         <div>
           <Link to="/">
-            <h1 className='text-4xl font-extrabold tracking-tighter transition hover:scale-105'>Anuncios<span className=''>Uy</span></h1>
+            {/* <p className='text-4xl font-extrabold tracking-tighter transition hover:scale-105'>Anuncios<span className=''>Uy</span></p> */}
+            <img className='w-52 transition hover:scale-105' src="/AnunciosUy.png" alt="AnunciosUy Logo" />
           </Link>
         </div>
         <div className='hidden md:flex gap-2 items-center'>
@@ -78,7 +79,7 @@ const Header = () => {
                 <>
                   <li>
                     <Link to="/publicar">
-                      <Button className="w-full">
+                      <Button className="w-full" variant="primary">
                         <Plus size="22" />
                         Publicar
                       </Button>

@@ -235,7 +235,7 @@ export function ProfileForm() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" disabled={loading}>{loading ? "Cargando..." : "Publicar"}</Button>
+                <Button type="submit" variant="primary" disabled={loading}>{loading ? "Cargando..." : "Publicar"}</Button>
             </form>
         </Form>
     )

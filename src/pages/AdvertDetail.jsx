@@ -96,7 +96,7 @@ const AdvertDetail = () => {
             <CarouselContent>
               {advert.images.map((image) => (
                 <CarouselItem key={image}>
-                  <img className='w-[40rem]' src={image} alt="Imagén del producto del anuncio." />
+                  <img alt={`Imagén de ${advert.title}`} className='w-[40rem]' loading='lazy' src={image} />
                 </CarouselItem>
               ))}
             </CarouselContent>

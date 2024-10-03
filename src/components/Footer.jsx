@@ -33,9 +33,10 @@ const Footer = () => {
                 </div>
                 <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
                     <div className="flex items-center space-x-2">
-                        <p className='text-xl font-bold'>AnunciosUy</p>
+                        {/* <p className='text-xl font-bold'>AnunciosUy</p> */}
+                        <img className='w-52' src="/AnunciosUy.png" alt="AnunciosUy Logo" />
                     </div>
-                    <div className="text-sm text-gray-500 mt-4 md:mt-0">© 2024 AnunciosUy. All rights reserved.</div>
+                    <div className="text-sm text-gray-500 mt-4 md:mt-0">&copy; 2024 AnunciosUy - Todos los derechos reservados</div>
                 </div>
             </div>
         </footer>

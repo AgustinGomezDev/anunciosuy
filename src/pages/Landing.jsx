@@ -3,55 +3,28 @@ import SearchForm from '@/components/SearchForm';
 import { Button } from '@/components/ui/button';
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { PlusCircle, Circle, Users01, TrendUp01, Home03, BriefCase01, ShoppingBag02, Monitor05, Announcement01, Clock, MarkerPin01 } from "untitledui-js-base"
-
-const latestAdverts = [
-    {
-        id: 1,
-        title: "Spacious Downtown Apartment",
-        category: "Property",
-        price: "$1,200/month",
-        location: "New York, NY",
-        image: "/placeholder.svg?height=200&width=300",
-    },
-    {
-        id: 2,
-        title: "Senior Web Developer Needed",
-        category: "Jobs",
-        price: "$80,000 - $120,000/year",
-        location: "Remote",
-        image: "/placeholder.svg?height=200&width=300",
-    },
-    {
-        id: 3,
-        title: "2018 Toyota Camry for Sale",
-        category: "Buy & Sell",
-        price: "$15,000",
-        location: "Los Angeles, CA",
-        image: "/placeholder.svg?height=200&width=300",
-    },
-    {
-        id: 4,
-        title: "Professional Photography Services",
-        category: "Services",
-        price: "Starting at $100/hour",
-        location: "Chicago, IL",
-        image: "/placeholder.svg?height=200&width=300",
-    },
-]
+import { PlusCircle, Circle, Users01, TrendUp01, Home03, BriefCase01, ShoppingBag02, Monitor05, Announcement01 } from "untitledui-js-base"
 
 const Landing = () => {
     return (
         <div className=''>
-            <section className='flex flex-col items-center justify-center px-5 py-10 md:py-36 gap-5 bg-gray-200'>
+            <section className='flex flex-col items-center justify-center px-5 py-10 md:py-36 gap-5 bg-gradient-to-r from-sky-300 to-blue-500 text-white'>
                 <div className='flex flex-col items-center justify-center text-center container'>
-                    <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-balance'>Publicá tu Anuncio <span className='text-blue-500'>Gratis</span></h1>
-                    <p className="max-w-lg text-gray-500 text-md md:text-lg text-balance">Conectá con el público, vendé, contratá o publicitá: todo en un solo lugar, sin costo alguno.</p>
+                    <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tighter text-white drop-shadow-lg text-balance'>
+                    ¡Publicá tu anuncio <span className='text-blue-900 uppercase'>gratis</span> o buscá en nuestras categorías!
+                    </h1>
+                    <p className="text-gray-300 text-xs md:text-lg text-balance md:max-w-xl mt-1 md:mt-3 ">Conectá con el público y encontrá todo lo que necesitás ¡todo en un solo lugar y sin costo alguno!</p>
                 </div>
-                <Link to="/publicar">
-                    <Button className="w-40 md:w-80 h-14" variant="primary">Publicar</Button>
-                </Link>
+                <div className='flex gap-5 items-center'>
+                    <Link to="/publicar">
+                        <Button className="w-32 md:w-52  h-10 md:h-14 bg-blue-500 hover:bg-blue-900 hover:scale-110 transition-all shadow-md" variant="primary">Publicar</Button>
+                    </Link>
+                    <Link to="/anuncios">
+                        <Button className="w-32 md:w-52  h-10 md:h-14 bg-blue-500 hover:bg-blue-900 hover:scale-110 transition-all shadow-md" variant="primary">Ver anuncios</Button>
+                    </Link>
+                </div>
             </section>
+
 
             <section className='py-10 md:py-36 flex flex-col items-center'>
                 <div className='text-center mb-10 md:mb-0 container'>
@@ -62,7 +35,7 @@ const Landing = () => {
             </section>
 
             <section className='py-10 md:py-36 flex flex-col items-center bg-gray-200'>
-                <h2 className="text-3xl font-bold text-center mb-12">Anuncios más recientes</h2>
+                <h2 className="text-xl md:text-3xl font-bold text-center mb-12">Anuncios más recientes</h2>
                 <LatestAdverts />
 
                 <Link to="/anuncios" className="text-center mt-8">
@@ -70,8 +43,8 @@ const Landing = () => {
                 </Link>
             </section>
 
-            <section className='px-5 py-10 md:py-20 flex flex-col items-center'>
-                <h2 className="text-3xl font-bold text-center mb-12">Explorá nuestras categorías</h2>
+            <section className='px-5 py-10 md:py-20 flex flex-col items-center bg-gradient-to-t from-white via-gray-100 to-gray-200'>
+                <h2 className="text-xl md:text-3xl font-bold text-center mb-12">Explorá nuestras categorías</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
                     {[
                         { icon: Circle, label: "Autos" },
@@ -82,7 +55,7 @@ const Landing = () => {
                         { icon: ShoppingBag02, label: "Moda" },
                     ].map((category, index) => (
                         <div key={index} className="flex flex-col items-center space-y-2 group">
-                            <Link to={`/anuncios?category=${category.label}`} className="p-4 bg-[#3b82f6]/10 rounded-full transition-colors group-hover:bg-[#3b82f6]/20">
+                            <Link to={`/anuncios?category=${category.label}`} className="p-4 bg-[#3b82f6]/10 rounded-full transition-colors hover:bg-[#3b82f6]/20">
                                 <category.icon className="h-8 w-8 text-[#3b82f6]" />
                             </Link>
                             <span className="text-sm font-medium">{category.label}</span>
@@ -94,7 +67,7 @@ const Landing = () => {
                 </Link>
             </section>
 
-            <section className='px-5 py-10 md:py-20 flex flex-col items-center bg-gray-200'>
+            <section className='px-5 py-10 md:py-20 flex flex-col items-center bg-gradient-to-b from-white to-gray-200'>
                 <h2 className='text-xl md:text-3xl font-bold'>Cómo funciona</h2>
                 <div className='mt-5 container'>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 place-items-center">
