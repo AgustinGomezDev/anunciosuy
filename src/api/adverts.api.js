@@ -40,3 +40,39 @@ export async function getRequestById(id) {
         throw new Error(errorMessage);
     }
 }
+
+export async function getAdvertsByUserId(id) {
+    const url = `/adverts/adverts/userId/${id}`
+
+    try {
+        const res = await axios.get(url)
+        return res
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message;
+        throw new Error(errorMessage);
+    }
+}
+
+export async function updateAdvert(id, updatedAdvert) {
+    const url = `/adverts/advert/${id}`
+
+    try {
+        const res = await axios.put(url, updatedAdvert)
+        return res
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message;
+        throw new Error(errorMessage);
+    }
+}
+
+export async function deleteAdvert(id) {
+    const url = `/adverts/advert/${id}`
+
+    try {
+        const res = await axios.delete(url)
+        return res
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message;
+        throw new Error(errorMessage);
+    }
+}

@@ -10,7 +10,7 @@ const Landing = () => {
         <div className=''>
             <section className='flex flex-col items-center justify-center px-5 py-10 md:py-36 gap-5 bg-gradient-to-r from-sky-300 to-blue-500 text-white'>
                 <div className='flex flex-col items-center justify-center text-center container'>
-                    <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tighter text-white drop-shadow-lg text-balance'>
+                    <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none tracking-tighter text-white drop-shadow-lg max-w-5xl text-balance'>
                     ¡Publicá tu anuncio <span className='text-blue-900 uppercase'>gratis</span> o buscá en nuestras categorías!
                     </h1>
                     <p className="text-gray-300 text-xs md:text-lg text-balance md:max-w-xl mt-1 md:mt-3 ">Conectá con el público y encontrá todo lo que necesitás ¡todo en un solo lugar y sin costo alguno!</p>

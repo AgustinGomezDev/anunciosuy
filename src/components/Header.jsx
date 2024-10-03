@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button } from './ui/button'
-import { HeartRounded, Plus, Menu01 } from "untitledui-js-base"
+import { HeartRounded, Plus, Menu01, User01 } from "untitledui-js-base"
 import { useAuth } from '@/context/AuthContext'
 import { zoomies } from 'ldrs'
 
@@ -51,7 +51,7 @@ const Header = () => {
                     </Button>
                   </Link>
                   <Link to="/cuenta">
-                    <Button variant="outline">Cuenta</Button>
+                    <Button variant="outline" className="flex gap-1 justify-between"><User01 size="22" /> Cuenta</Button>
                   </Link>
                   <Button variant="outline" onClick={() => logoutFn()}>Cerrar sesión</Button>
                 </div>
@@ -79,7 +79,7 @@ const Header = () => {
                 <>
                   <li>
                     <Link to="/publicar">
-                      <Button className="w-full" variant="primary">
+                      <Button className="w-full flex justify-around" variant="primary">
                         <Plus size="22" />
                         Publicar
                       </Button>
@@ -87,7 +87,7 @@ const Header = () => {
                   </li>
                   <li>
                     <Link to="/cuenta">
-                      <Button variant="outline" className="w-full">Cuenta</Button>
+                      <Button variant="outline" className="w-full flex justify-around"><User01 size="22" />  Cuenta</Button>
                     </Link>
                   </li>
                   <li>

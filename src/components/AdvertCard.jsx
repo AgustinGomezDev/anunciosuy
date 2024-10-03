@@ -6,7 +6,7 @@ import { formatPrice } from '@/utils/formatPrice';
 
 const AdvertCard = ({ id, image, title, description, createdAt, location, price, category }) => {
     return (
-        <Link id={id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-4 transition relative h-96 w-[15rem] 2xl:w-80" to={`/anuncios/${id}`}>
+        <Link id={id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-4 transition relative h-80 md:h-96 w-40 md:w-[15rem] 2xl:w-80" to={`/anuncios/${id}`}>
             <img
                 src={image}
                 alt={`Imagén de ${title}`}
@@ -16,8 +16,8 @@ const AdvertCard = ({ id, image, title, description, createdAt, location, price,
             <div className="p-4 border-t h-full">
                 <div className=''>
                     <div>
-                        <h3 className="font-medium text-lg mb-2">{title}</h3>
-                        <div className="flex items-center text-2xl font-bold text-[#3b82f6] mb-2">
+                        <h3 className="md:font-medium text-md md:text-lg mb-2">{title}</h3>
+                        <div className="flex items-center text-xl md:text-2xl font-bold text-[#3b82f6] mb-2">
                             <span>{formatPrice(price) === '0' ? '' : `$${formatPrice(price)}`}</span>
                         </div>
                         <div className="flex items-center text-sm text-gray-500 mb-2">

@@ -90,9 +90,9 @@ const AdvertDetail = () => {
         </div>
       </div>
       <div className='flex flex-col gap-5 md:flex-row'>
-        <div>
+        <div className='flex justify-center items-center'>
 
-          <Carousel className="w-[30rem] md:w-[40rem]" opts={{ loop: true }}>
+          <Carousel className="w-[20rem] md:w-[40rem]" opts={{ loop: true }}>
             <CarouselContent>
               {advert.images.map((image) => (
                 <CarouselItem key={image}>
@@ -131,7 +131,7 @@ const AdvertDetail = () => {
             )}
           </div>
           <hr className='my-1' />
-          <p className='text-md text-gray-700 max-w-xl'>{advert.description}</p>
+          <p className='text-md text-gray-700 max-w-xl whitespace-pre-line'>{advert.description}</p>
         </div>
       </div>
     </div>

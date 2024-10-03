@@ -7,10 +7,12 @@ import SignIn from './pages/SignIn'
 import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import Post from './pages/Post'
-import MyAdvert from './pages/MyAdvert'
 import NotFound from './pages/NotFound'
 import Adverts from './pages/Adverts'
 import AdvertDetail from './pages/AdvertDetail'
+import Account from './pages/Account'
+import EditAdvert from './pages/EditAdvert'
+import DeleteAdvert from './pages/DeleteAdvert'
 
 function App() {
   const router = createBrowserRouter([
@@ -29,19 +31,33 @@ function App() {
             </ProtectedRoute>
         },
         {
-          path: "/publicar/mi-anuncio/:id",
-          element:
-            <ProtectedRoute>
-              <MyAdvert />
-            </ProtectedRoute>
-        },
-        {
           path: "/anuncios",
           element: <Adverts />
         },
         {
           path: "/anuncios/:id",
           element: <AdvertDetail />
+        },
+        {
+          path: "/anuncios/editar/:id",
+          element:
+            <ProtectedRoute>
+              <EditAdvert />
+            </ProtectedRoute>
+        },
+        {
+          path: "/anuncios/borrar/:id",
+          element:
+            <ProtectedRoute>
+              <DeleteAdvert />
+            </ProtectedRoute>
+        },
+        {
+          path: "/cuenta",
+          element:
+            <ProtectedRoute>
+              <Account />
+            </ProtectedRoute>
         },
         {
           path: "*",

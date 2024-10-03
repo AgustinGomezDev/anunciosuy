@@ -1,6 +1,6 @@
-import React from 'react'
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import React, { useEffect } from 'react';
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
     Form,
@@ -10,24 +10,24 @@ import {
     FormItem,
     FormLabel,
     FormMessage
-} from "./ui/form";
+} from "@/components/ui/form";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue
-} from "@/components/ui/select"
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import useFetch from "@/hooks/useFetch";
 import toast from 'react-hot-toast';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from '@/context/AuthContext';
-import { postRequest } from '@/api/adverts.api';
-import { Textarea } from './ui/textarea';
-import locationData from "../data/location.json"
-import categoryData from "../data/category.json"
+import { getRequestById, updateAdvert } from '@/api/adverts.api';
+import { Textarea } from '@/components/ui//textarea';
+import locationData from "../data/location.json";
+import categoryData from "../data/category.json";
 import { uploadImage } from '@/firebase/upload';
 
 const formSchema = z.object({
@@ -44,7 +44,7 @@ const formSchema = z.object({
         message: "Este campo debe ser rellenado."
     }),
     price: z.string().transform((value, ctx) => {
-        const parsed = parseInt(value)
+        const parsed = parseInt(value);
 
         if (isNaN(parsed)) {
             ctx.addIssue({
@@ -55,11 +55,13 @@ const formSchema = z.object({
         }
         return parsed;
     }),
-    images: z.instanceof(FileList).refine((file) => file?.length > 0, 'Debes subir al menos 1 imagén.')
-})
+    images: z.instanceof(FileList).optional().nullable()
+});
 
-export function ProfileForm() {
+const EditAdvert = () => {
+    const { id } = useParams();
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -75,36 +77,60 @@ export function ProfileForm() {
 
     const imagesRef = form.register("images");
 
-    const { fn: PostAdvert, loading } = useFetch(postRequest)
+    const { fn: GetAdvertById, loading: loadingAdvert } = useFetch(getRequestById);
+    const { fn: UpdateAdvert, loading: loadingUpdate } = useFetch(updateAdvert);
+
+    useEffect(() => {
+        const fetchAdvert = async () => {
+            try {
+                const res = await GetAdvertById(id);
+                const advert = res.data.data.advert;
+
+                form.reset({
+                    title: advert.title,
+                    description: advert.description,
+                    category: advert.category,
+                    location: advert.location,
+                    price: advert.price.toString(),
+                    images: null
+                });
+            } catch (error) {
+                toast.error("Error al cargar el anuncio.");
+            }
+        };
+
+        fetchAdvert();
+    }, [id]);
 
     async function onSubmit(values) {
+        console.log(values.description)
         try {
-            const imageUploadPromises = Array.from(values.images).map(image => uploadImage(image));
-            const imageUrls = await Promise.all(imageUploadPromises)
+            let imageUrls = [];
 
-            const advertData = {
+            if (values.images?.length > 0) {
+                const imageUploadPromises = Array.from(values.images).map(image => uploadImage(image));
+                imageUrls = await Promise.all(imageUploadPromises);
+            }
+
+            const updatedAdvertData = {
                 ...values,
-                images: imageUrls
+                images: imageUrls.length ? imageUrls : undefined
             };
 
-            const res = await PostAdvert(advertData)
+            const res = await UpdateAdvert(id, updatedAdvertData);
             if (!res || res.error) {
-                throw new Error(res?.error || 'Ups, algo salió mal al intentar registrar tu cuenta. ¡Inténtalo de nuevo!');
+                throw new Error(res?.error || 'Error actualizando el anuncio.');
             }
 
-            if (res.data.data.advert) {
-                toast.success("¡Anuncio publicado con éxito!");
-                if (!loading) {
-                    navigate(`/anuncios/${res.data.data.advert._id}`)
-                }
-            }
+            toast.success("¡Anuncio actualizado con éxito!");
+            navigate(`/anuncios/${id}`);
 
         } catch (error) {
-            toast.error(error.message.split("Error: Error:")[1] || "Lo sentimos, ha ocurrido un error inesperado. ¡Intenta más tarde!");
+            toast.error(error.message || "Lo sentimos, ha ocurrido un error inesperado.");
         }
     }
 
-    const sortedCategories = categoryData.sort((a, b) => a.name.localeCompare(b.name))
+    const sortedCategories = categoryData.sort((a, b) => a.name.localeCompare(b.name));
 
     return (
         <Form {...form}>
@@ -146,12 +172,12 @@ export function ProfileForm() {
                     name="images"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Imagenes</FormLabel>
+                            <FormLabel>Imágenes (solo selecciona si deseas actualizar)</FormLabel>
                             <FormControl>
                                 <Input type="file" multiple {...imagesRef} />
                             </FormControl>
                             <FormDescription>
-                                Estas van a ser las imagénes que se van a mostrar en tu anuncio.
+                                Estas van a ser las imágenes que se van a mostrar en tu anuncio <span className='underline'>(si subes alguna imagén se quitarán las anteriores)</span>.
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
@@ -171,13 +197,11 @@ export function ProfileForm() {
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        {sortedCategories.map(({ id, name }) => {
-                                            return (
-                                                <SelectItem key={id} value={name}>
-                                                    {name}
-                                                </SelectItem>
-                                            );
-                                        })}
+                                        {sortedCategories.map(({ id, name }) => (
+                                            <SelectItem key={id} value={name}>
+                                                {name}
+                                            </SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                                 <FormDescription>
@@ -200,13 +224,11 @@ export function ProfileForm() {
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        {locationData.map(({ id, name }) => {
-                                            return (
-                                                <SelectItem key={id} value={name}>
-                                                    {name}
-                                                </SelectItem>
-                                            );
-                                        })}
+                                        {locationData.map(({ id, name }) => (
+                                            <SelectItem key={id} value={name}>
+                                                {name}
+                                            </SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                                 <FormDescription>
@@ -233,18 +255,15 @@ export function ProfileForm() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" variant="primary" disabled={loading}>{loading ? "Cargando..." : "Publicar"}</Button>
+                <Button type="submit" variant="primary" disabled={loadingAdvert || loadingUpdate}>
+                    {loadingAdvert || loadingUpdate ? "Cargando..." : "Guardar cambios"}
+                </Button>
+                <Button onClick={() => navigate(-1)} variant="secondary">
+                    Cancelar
+                </Button>
             </form>
         </Form>
-    )
-}
+    );
+};
 
-const PostForm = () => {
-    return (
-        <div>
-            <ProfileForm />
-        </div>
-    )
-}
-
-export default PostForm
+export default EditAdvert;
