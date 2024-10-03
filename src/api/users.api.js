@@ -47,3 +47,15 @@ export async function verifyTokenRequest() {
         throw new Error(errorMessage);
     }
 }
+
+export async function getUserById(id) {
+    const url = `/users/${id}`
+
+    try {
+        const res = await axios.get(url)
+        return res
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message;
+        throw new Error(errorMessage);
+    }
+}

@@ -16,15 +16,15 @@ import {
 } from "@/components/ui/carousel"
 import { Button } from '@/components/ui/button'
 import WhatsAppIcon from '@/components/icons/Whatsapp'
-import { useAuth } from '@/context/AuthContext'
-import Rating from '@/components/Rating'
+import { getUserById } from '@/api/users.api'
 
 const AdvertDetail = () => {
   const [advert, setAdvert] = useState(null)
+  const [advertUser, setAdvertUser] = useState(null)
   const { fn: GetAdvert, loading } = useFetch(getRequestById)
+  const { fn: GetAdvertUser } = useFetch(getUserById)
   let { id } = useParams()
   const navigate = useNavigate()
-  const { user } = useAuth()
   zoomies.register()
 
   useEffect(() => {
@@ -33,19 +33,42 @@ const AdvertDetail = () => {
         const res = await GetAdvert(id)
         setAdvert(res.data.data.advert)
       } catch (error) {
-        console.error('Error buscando el anuncio:', error);
+        console.error('Error buscando el anuncio:', error)
       }
-    };
+    }
+
     fetchAdvert()
   }, [id])
 
-  const handlePhoneNumber = () => {
-    let phoneNumber = user.phone
+  useEffect(() => {
+    const fetchAdvertUser = async () => {
+      if (advert?.userId) {
+        try {
+          const res = await GetAdvertUser(advert.userId)
+          setAdvertUser(res.data.data.user)
+        } catch (error) {
+          console.error('Error obteniendo el usuario:', error)
+        }
+      }
+    }
 
-    if (!phoneNumber.startsWith('+598')) phoneNumber = `+598${phoneNumber}`
+    fetchAdvertUser()
+  }, [advert])
+
+  const getPhoneNumber = () => {
+    if (!advertUser || !advertUser.phone) {
+      return null
+    }
+
+    let phoneNumber = advertUser.phone
+    if (!phoneNumber.startsWith('+598')) {
+      phoneNumber = `+598${phoneNumber}`
+    }
 
     return phoneNumber
   }
+
+  const phoneNumber = getPhoneNumber()
 
   if (loading || !advert)
     return (
@@ -95,10 +118,16 @@ const AdvertDetail = () => {
             </div>
           </div>
           <div className='flex flex-col lg:flex-row lg:items-center justify-between'>
-            <Link to={`https://wa.me/${handlePhoneNumber()}`} target='_blank'>
-              <Button variant="wpp" className="my-4 flex gap-2 items-center">Contactar por WhatsApp<WhatsAppIcon className="w-5 h-5" /></Button>
-            </Link>
-            {/* <Rating startingRate={advert.rating.score} /> */}
+            {phoneNumber ? (
+              <Link to={`https://wa.me/${phoneNumber}`} target='_blank'>
+                <Button variant="wpp" className="my-4 flex gap-2 items-center">
+                  Contactar por WhatsApp
+                  <WhatsAppIcon className="w-5 h-5" />
+                </Button>
+              </Link>
+            ) : (
+              <p>Cargando número de contacto...</p>
+            )}
           </div>
           <hr className='my-1' />
           <p className='text-md text-gray-700 max-w-xl'>{advert.description}</p>
