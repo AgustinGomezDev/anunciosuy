@@ -18,16 +18,16 @@ const Footer = () => {
                     <div>
                         <h3 className="font-semibold mb-3">Ayuda</h3>
                         <ul className="space-y-2">
-                            <li><Link to="/" className="text-sm text-gray-500 hover:text-[#3b82f6]">Centro de ayuda</Link></li>
-                            <li><Link to="/" className="text-sm text-gray-500 hover:text-[#3b82f6]">Contacto</Link></li>
+                            <li><Link to="/centro-de-ayuda" className="text-sm text-gray-500 hover:text-[#3b82f6]">Centro de ayuda</Link></li>
+                            <li><Link to="/contacto" className="text-sm text-gray-500 hover:text-[#3b82f6]">Contacto</Link></li>
                         </ul>
                     </div>
                     <div>
                         <h3 className="font-semibold mb-3">Legal</h3>
                         <ul className="space-y-2">
-                            <li><Link to="/" className="text-sm text-gray-500 hover:text-[#3b82f6]">Términos y Condiciones</Link></li>
-                            <li><Link to="/" className="text-sm text-gray-500 hover:text-[#3b82f6]">Política de Privacidad</Link></li>
-                            <li><Link to="/" className="text-sm text-gray-500 hover:text-[#3b82f6]">Política de Cookies</Link></li>
+                            <li><Link to="/terminos-y-condiciones" className="text-sm text-gray-500 hover:text-[#3b82f6]">Términos y Condiciones</Link></li>
+                            <li><Link to="/politica-de-privacidad" className="text-sm text-gray-500 hover:text-[#3b82f6]">Política de Privacidad</Link></li>
+                            <li><Link to="/politica-de-cookies" className="text-sm text-gray-500 hover:text-[#3b82f6]">Política de Cookies</Link></li>
                         </ul>
                     </div>
                 </div>

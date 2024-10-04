@@ -13,6 +13,10 @@ import AdvertDetail from './pages/AdvertDetail'
 import Account from './pages/Account'
 import EditAdvert from './pages/EditAdvert'
 import DeleteAdvert from './pages/DeleteAdvert'
+import TermsAndConditions from './pages/TermsAndConditions'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import CookiesPolicy from './pages/CookiesPolicy'
+import HelpCenter from './pages/HelpCenter'
 
 function App() {
   const router = createBrowserRouter([
@@ -58,6 +62,22 @@ function App() {
             <ProtectedRoute>
               <Account />
             </ProtectedRoute>
+        },
+        {
+          path: "/terminos-y-condiciones",
+          element: <TermsAndConditions />
+        },
+        {
+          path: "/politica-de-privacidad",
+          element: <PrivacyPolicy />
+        },
+        {
+          path: "/politica-de-cookies",
+          element: <CookiesPolicy />
+        },
+        {
+          path: "/centro-de-ayuda",
+          element: <HelpCenter />
         },
         {
           path: "*",
