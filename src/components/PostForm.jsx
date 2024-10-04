@@ -55,7 +55,9 @@ const formSchema = z.object({
         }
         return parsed;
     }),
-    images: z.instanceof(FileList).refine((file) => file?.length > 0, 'Debes subir al menos 1 imagén.')
+    images: z.instanceof(FileList)
+        .refine((fileList) => fileList.length > 0, 'Debes subir al menos 1 imagén.')
+        .refine((fileList) => fileList.length <= 10, `Puedes subir hasta 10 imágenes.`)
 })
 
 export function ProfileForm() {
@@ -147,7 +149,7 @@ export function ProfileForm() {
                                 <Textarea className="resize-none w-full h-52"  {...field} />
                             </FormControl>
                             <FormDescription>
-                                Esta es la descripción pública que se va a mostrar en tu anuncio.
+                                <p className='flex justify-between items-center'>Esta es la descripción pública que se va a mostrar en tu anuncio. <span>{field.value.length}/1000</span></p>
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
