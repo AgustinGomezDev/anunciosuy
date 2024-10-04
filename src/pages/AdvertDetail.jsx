@@ -105,7 +105,7 @@ const AdvertDetail = () => {
           </Carousel>
 
         </div>
-        <div>
+        <div className='md:ml-10'>
           <h3 className='text-2xl font-bold'>{advert.title}</h3>
           <p className='text-2xl font-bold text-[#3b82f6]'>{formatPrice(advert.price) === '0' ? '' : `$${formatPrice(advert.price)}`}</p>
           <div className='flex gap-5 items-center text-gray-500 '>

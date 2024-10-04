@@ -23,12 +23,12 @@ import { Button } from "./ui/button";
 import useFetch from "@/hooks/useFetch";
 import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
-import { useAuth } from '@/context/AuthContext';
 import { postRequest } from '@/api/adverts.api';
 import { Textarea } from './ui/textarea';
 import locationData from "../data/location.json"
 import categoryData from "../data/category.json"
 import { uploadImage } from '@/firebase/upload';
+import imageCompression from 'browser-image-compression';
 
 const formSchema = z.object({
     title: z.string().min(5, {
@@ -79,8 +79,20 @@ export function ProfileForm() {
 
     async function onSubmit(values) {
         try {
-            const imageUploadPromises = Array.from(values.images).map(image => uploadImage(image));
-            const imageUrls = await Promise.all(imageUploadPromises)
+            const options = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 1280,
+                useWebWorker: true,
+            };
+
+            const compressedImagePromises = Array.from(values.images).map(async (image) => {
+                const compressedImage = await imageCompression(image, options)
+
+                const renamedImage = new File([compressedImage], `image-${values.title}-${Date.now()}`, { type: compressedImage.type })
+                return uploadImage(renamedImage)
+            });
+
+            const imageUrls = await Promise.all(compressedImagePromises)
 
             const advertData = {
                 ...values,
@@ -227,7 +239,7 @@ export function ProfileForm() {
                                 <Input {...field} />
                             </FormControl>
                             <FormDescription>
-                                Este es el precio que se va a mostrar en tu anuncio, en caso de no tener precio dejar en 0.
+                                Este es el precio que se va a mostrar en tu anuncio <span className='underline'>(precio en pesos uruguayos)</span>, en caso de no tener precio dejar en 0.
                             </FormDescription>
                             <FormMessage />
                         </FormItem>

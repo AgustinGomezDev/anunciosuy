@@ -258,7 +258,7 @@ const EditAdvert = () => {
                 <Button type="submit" variant="primary" disabled={loadingAdvert || loadingUpdate}>
                     {loadingAdvert || loadingUpdate ? "Cargando..." : "Guardar cambios"}
                 </Button>
-                <Button onClick={() => navigate(-1)} variant="secondary">
+                <Button type="button" onClick={() => navigate(-1)} variant="secondary">
                     Cancelar
                 </Button>
             </form>
