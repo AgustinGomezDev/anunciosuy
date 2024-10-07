@@ -3,7 +3,8 @@ import SearchForm from '@/components/SearchForm';
 import { Button } from '@/components/ui/button';
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { PlusCircle, Circle, Users01, TrendUp01, Home03, BriefCase01, ShoppingBag02, Monitor05, Announcement01 } from "untitledui-js-base"
+import { PlusCircle, Lock03, Users01, TrendUp01, Home03, BriefCase01, Monitor05, Announcement01 } from "untitledui-js-base"
+import { Fashion, Car } from '@/components/icons/CategoriesIcons';
 
 const Landing = () => {
     return (
@@ -47,22 +48,22 @@ const Landing = () => {
                 <h2 className="text-xl md:text-3xl font-bold text-center mb-12">Explorá nuestras categorías</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
                     {[
-                        { icon: Circle, label: "Autos" },
+                        { icon: Car, label: "Autos", from: 'local' },
                         { icon: Home03, label: "Inmuebles" },
                         { icon: BriefCase01, label: "Empleo" },
                         { icon: Announcement01, label: "Servicios" },
                         { icon: Monitor05, label: "Computadoras y Consolas" },
-                        { icon: ShoppingBag02, label: "Moda" },
+                        { icon: Fashion, label: "Moda", from: 'local' },
                     ].map((category, index) => (
                         <div key={index} className="flex flex-col items-center space-y-2 group">
                             <Link to={`/anuncios?category=${category.label}`} className="p-4 bg-[#3b82f6]/10 rounded-full transition-colors hover:bg-[#3b82f6]/20">
-                                <category.icon className="h-8 w-8 text-[#3b82f6]" />
+                                <category.icon className="h-8 w-8 text-[#3b82f6]" fill={category.from === 'local' ? "#3b82f6" : undefined}/>
                             </Link>
                             <span className="text-sm font-medium">{category.label}</span>
                         </div>
                     ))}
                 </div>
-                <Link>
+                <Link to="/categorias">
                     <Button variant="primary" className="mt-5">Ver todas las categorías</Button>
                 </Link>
             </section>
@@ -122,7 +123,7 @@ const Landing = () => {
                             </div>
                         </div>
                         <div className="flex items-start space-x-4">
-                            <Circle className="h-6 w-6 text-[#3b82f6] mt-1" />
+                            <Lock03 className="h-6 w-6 text-[#3b82f6] mt-1" />
                             <div>
                                 <h3 className="text-xl font-semibold mb-2">Plataforma segura</h3>
                                 <p className="text-gray-600">Tus datos están seguros ya que nunca te vamos a pedir información sensibles.</p>

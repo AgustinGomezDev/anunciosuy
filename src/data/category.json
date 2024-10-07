@@ -1,106 +1,221 @@
 [
     {
         "id": 1,
-        "name": "Autos"
+        "name": "Autos",
+        "icon": {
+            "name": "Car",
+            "from": "local"
+        }
     },
     {
         "id": 2,
-        "name": "Motos"
+        "name": "Motos",
+        "icon": {
+            "name": "Motorbike",
+            "from": "local"
+        }
+        
     },
     {
         "id": 3,
-        "name": "Camionetas"
+        "name": "Camionetas",
+        "icon": {
+            "name": "Van",
+            "from": "local"
+        }
     },
     {
         "id": 4,
-        "name": "Camiones"
+        "name": "Camiones",
+        "icon": {
+            "name": "Truck",
+            "from": "local"
+        }
     },
     {
         "id": 5,
-        "name": "Repuestos Autos"
+        "name": "Repuestos Autos",
+        "icon": {
+            "name": "Tool",
+            "from": "local"
+        }
     },
     {
         "id": 6,
         "name": "Repuestos Motos"
+        ,
+        "icon": {
+            "name": "Tool",
+            "from": "local"
+        }
     },
     {
         "id": 7,
         "name": "Bicicletas"
+        ,
+        "icon": {
+            "name": "Bike",
+            "from": "local"
+        }
     },
     {
         "id": 8,
-        "name": "Repuestos Bicicletas"
+        "name": "Repuestos Bicicletas",
+        "icon": {
+            "name": "Tool",
+            "from": "local"
+        }
     },
     {
         "id": 9,
-        "name": "Inmuebles"
+        "name": "Inmuebles",
+        "icon": {
+            "name": "Home03",
+            "from": "untitledui-js-base"
+        }
     },
     {
         "id": 10,
-        "name": "Alquiler de Inmuebles"
+        "name": "Alquiler de Inmuebles",
+        "icon": {
+            "name": "Home03",
+            "from": "untitledui-js-base"
+        }
     },
     {
         "id": 11,
-        "name": "Empleo"
+        "name": "Empleo",
+        "icon": {
+            "name": "BriefCase01",
+            "from": "untitledui-js-base"
+        }
     },
     {
         "id": 12,
-        "name": "Servicios"
+        "name": "Servicios",
+        "icon": {
+            "name": "Announcement01",
+            "from": "untitledui-js-base"
+        }
     },
     {
         "id": 13,
-        "name": "Electrónica"
+        "name": "Electrónica",
+        "icon": {
+            "name": "Electronic",
+            "from": "local"
+        }
     },
     {
         "id": 14,
-        "name": "Repuestos Electrónicos"
+        "name": "Repuestos Electrónicos",
+        "icon": {
+            "name": "ElectronicRepleacement",
+            "from": "local"
+        }
     },
     {
         "id": 15,
-        "name": "Computadoras y Consolas"
+        "name": "Computadoras y Consolas",
+        "icon": {
+            "name": "Monitor05",
+            "from": "untitledui-js-base"
+        }
     },
     {
         "id": 16,
-        "name": "Electrodomésticos"
+        "name": "Electrodomésticos",
+        "icon": {
+            "name": "Appliance",
+            "from": "local"
+        }
     },
     {
         "id": 17,
-        "name": "Muebles"
+        "name": "Muebles",
+        "icon": {
+            "name": "Furniture",
+            "from": "local"
+        }
     },
     {
         "id": 18,
-        "name": "Hogar y Jardín"
+        "name": "Hogar y Jardín",
+        "icon": {
+            "name": "Garden",
+            "from": "local"
+        }
     },
     {
         "id": 19,
-        "name": "Moda"
+        "name": "Moda",
+        "icon": {
+            "name": "Fashion",
+            "from": "local"
+        }
     },
     {
         "id": 20,
-        "name": "Accesorios de Moda"
+        "name": "Accesorios de Moda",
+        "icon": {
+            "name": "FashioAccesories",
+            "from": "local"
+        }
     },
     {
         "id": 21,
-        "name": "Juegos y Juguetes"
+        "name": "Juegos y Juguetes",
+        "icon": {
+            "name": "Game",
+            "from": "local"
+        }
     },
     {
         "id": 22,
-        "name": "Imagen y Sonido"
+        "name": "Imagen y Sonido",
+        "icon": {
+            "name": "ImageAndSound",
+            "from": "local"
+        }
     },
     {
         "id": 23,
-        "name": "Celulares"
+        "name": "Celulares",
+        "icon": {
+            "name": "Phone",
+            "from": "local"
+        }
     },
     {
         "id": 24,
-        "name": "Deportes"
+        "name": "Deportes",
+        "icon": {
+            "name": "Sport",
+            "from": "local"
+        }
     },
     {
         "id": 25,
-        "name": "Mascotas"
+        "name": "Mascotas",
+        "icon": {
+            "name": "Pet",
+            "from": "local"
+        }
     },
     {
         "id": 26,
-        "name": "Libros"
+        "name": "Libros",
+        "icon": {
+            "name": "Book",
+            "from": "local"
+        }
+    },
+    {
+        "id": 27,
+        "name": "Otros",
+        "icon": {
+            "name": "Dots",
+            "from": "local"
+        }
     }
 ]

@@ -17,6 +17,7 @@ import TermsAndConditions from './pages/TermsAndConditions'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import CookiesPolicy from './pages/CookiesPolicy'
 import HelpCenter from './pages/HelpCenter'
+import Categories from './pages/Categories'
 
 function App() {
   const router = createBrowserRouter([
@@ -78,6 +79,10 @@ function App() {
         {
           path: "/centro-de-ayuda",
           element: <HelpCenter />
+        },
+        {
+          path: "/categorias",
+          element: <Categories />
         },
         {
           path: "*",
